@@ -1,4 +1,4 @@
-package exBDD;
+package fr.fms.entities;
 
 public class Article {
 	private int resultId;
