@@ -104,4 +104,5 @@ public abstract class ArticleDao<T> implements Dao<T> {
 				e.printStackTrace();
 			}
 }
+
 }

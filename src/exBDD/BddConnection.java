@@ -8,7 +8,9 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class BddConnection {
-public static Connection getConnection() {
+	private static Connection connection;
+	
+	public  BddConnection() {
 	Properties props = null;
 	
 	try {
@@ -27,17 +29,19 @@ public static Connection getConnection() {
 	String url = props.getProperty("url");
 	String login =props.getProperty("login");
 	String password =props.getProperty("password");
-	
-	Connection connection = null;
 	try {
 		connection = DriverManager.getConnection(url, login, password);
 	} catch (SQLException e) {
-		// TODO Auto-generated catch block
+		
 		e.printStackTrace();
 	}
-	return connection;
-
 }
+public static synchronized Connection getConnection() {
+		if(connection == null) {
+			new BddConnection();
+		}
+		return connection;
+	}
 public static Properties readConfigFile(String file) throws IOException  {
 	 FileInputStream fis = null;
 	 Properties props = null;

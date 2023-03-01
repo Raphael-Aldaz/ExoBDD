@@ -52,6 +52,12 @@ CREATE TABLE T_Category (
 	CatName VARCHAR(30) NOT NULL,
 	CatDescription VARCHAR(30) NOT NULL 
 ) ENGINE = innoDB;
+CREATE TABLE T_Users (
+	IdUser int(4) PRIMARY KEY AUTO_INCREMENT,
+	Login varchar(20) NOT NULL,
+	Password varchar(20) NOT NULL
+)ENGINE = InnoDB;
+
 
 INSERT INTO T_Category(CatName, CatDescription) VALUES ('Materiel info', 'Tout materiel info');
 INSERT INTO T_Category(CatName, CatDescription) VALUES ('PC', 'Ordinateur portable ou bureau');
@@ -80,3 +86,9 @@ UPDATE T_Articles SET IdCategory= 3 WHERE IdArticle = 13;
 UPDATE T_Articles SET IdCategory= 1 WHERE IdArticle = 15;
 
 SELECT IdArticle, Description, Brand, UnitaryPrice, CatName  FROM T_Articles INNER JOIN T_Category on T_Articles.IdCategory = T_Category.IdCategory;
+
+INSERT INTO T_Users(Login, Password) VALUES ('ARaphael', 'I<3SQL');
+INSERT INTO T_Users(Login, Password) VALUES ('GNicolas', '12345');
+INSERT INTO T_Users(Login, Password) VALUES ('PChristian', '54321');
+INSERT INTO T_Users(Login, Password) VALUES ('AAlexandre', '147852');
+
