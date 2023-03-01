@@ -1,26 +1,34 @@
 package exBDD;
 
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Properties;
+
 
 public class Main {
 
 	public static void main(String[] args) throws Exception {
 		ArrayList<Article>articles = new ArrayList<Article>();
+		CreateConfigFile.CreateConf();
+		Properties props = readConfigFile("config.properties");
+		
+
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
+			Class.forName(props.getProperty("driver.class"));
 		}catch(ClassNotFoundException e){
 			e.printStackTrace();
 		}
 		
-		String url = "jdbc:mariadb://localhost:3306/shop";
-		String login = "root";
-		String password = "fms2023";
+		String url = props.getProperty("url");
+		String login =props.getProperty("login");
+		String password =props.getProperty("password");
 		
 		try(Connection connection = DriverManager.getConnection(url, login, password)){
 			selectAll(articles, connection);
@@ -115,6 +123,7 @@ public class Main {
 	 
 } 
  public static void selectById(ArrayList<Article> list, Connection connection, int Id) {
+
 		
 		String querySelectById = "SELECT * FROM T_Articles WHERE IdArticle ="+ Id;
 		try(Statement statement = connection.createStatement()){
@@ -133,4 +142,19 @@ public class Main {
 		}
 	 
 } 
+
+public static Properties readConfigFile(String file) throws IOException  {
+	 FileInputStream fis = null;
+	 Properties props = null;
+	 try {
+		 fis = new FileInputStream(file);
+		 props = new Properties();
+		 props.load(fis);
+	 } catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		fis.close();
+	}
+	 return props;
+ }
 }
