@@ -4,10 +4,11 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import exBDD.BddConnection;
+import fr.fms.entities.Article;
 
 
 public interface Dao<T> {
-public Connection connection = BddConnection.getConnection();
+public static Connection connection = BddConnection.getConnection();
 public void create (T obj);
 public T selectById(int id);
 public boolean update (T obj);

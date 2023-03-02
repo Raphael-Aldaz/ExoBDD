@@ -13,40 +13,62 @@ import fr.fms.entities.User;
 public class Main {
 
 	public static void main(String[] args) throws Exception  {
-		Connection connect = BddConnection.getConnection();
-		ArrayList<Article>articles = new ArrayList<Article>();
-		ArrayList<User>users = new ArrayList<User>();
+		
+		ArticleDao<Article> articleDao = new ArticleDao<Article>();
 		Scanner scan = new Scanner(System.in);
 		
-//			ArticleDao.selectAll(articles, BddConnection.getConnection());
-//			ArticleDao.update(articles, BddConnection.getConnection(), 10);
-//			ArticleDao.create(articles, BddConnection.getConnection(), "switch", "Nintendu", 300, 4);
-//			ArticleDao.delete(articles, BddConnection.getConnection(), 16);
-//			ArticleDao.selectById(articles, BddConnection.getConnection(), 10);
+			
+			
+			//articleDao.readAll();
+			//articleDao.update(  10,"Batterie Laptop", "Sumsung2145", 250,2);	
+			//articleDao.create(  "test", "test", 300, 4);
+			System.out.println("###########################################################################");
+//			
+//			articleDao.delete( 33);
+			Article a = articleDao.selectById( 15);
+			System.out.println(a);
 //			UserDao.selectAll(users, connect);
-			System.out.println("Pour voir la liste des articles, merci de saisir votre login et votre mot de passe :\n"
-					+ "Login :");
-			String login = scan.nextLine();
-			System.out.println("Password :");
-			String password = scan.next();
-			UserDao.selectAll(users, connect);
-			
-			
-	
-			Boolean registeredUser = false;
-			for(User user : users) {
-				if(login.equals(user.getUserLogin()) && password.equals(user.getUserPassword())) registeredUser = true;
-			}
-			
-			if(registeredUser == true) {
-				ArticleDao.selectAll(articles, BddConnection.getConnection());
-			} else {
-				System.out.println("Utilistaeur pas enregistré !");
-			}
-			for(Article article : articles) {
-				System.out.println("| " + article.getResultId() + " - " + article.getResultDescription() + " - " + article.getResultBrand() + " - " + article.getResultPrice() + " |");
-				System.out.println();
-			}
+//			System.out.println("Pour voir la liste des articles, merci de saisir votre login et votre mot de passe :\n"
+//					+ "Login :");
+//			String login = scan.nextLine();
+//			System.out.println("Password :");
+//			String password = scan.next();
+//			UserDao.selectAll(users, connect);
+//			
+//			Boolean registeredUser = false;
+//			for(User user : users) {
+//				if(login.equals(user.getUserLogin()) && password.equals(user.getUserPassword())) registeredUser = true;
+//			}
+//			
+//			if(registeredUser == true) {
+//				ArticleDao.selectAll(articles, BddConnection.getConnection());
+//			} else {
+//				System.out.println("Utilistaeur pas enregistré !");
+//			}
+//			for(Article article : articles) {
+//				System.out.println("| " + article.getArticleId() + " - " + article.getArticleDescription() + " - " + article.getArticleBrand() + " - " + article.getArticlePrice() + " |");
+//				System.out.println();
+//			}
+//			
+//			while(true) {
+//				System.out.println("Que voulez vous faire ? \n"
+//						+"1-Ajouter un article 2-Retirer un article 3-Valider votre panier");
+//				int choice = -1;
+//				while(choice!=4) {
+//					choice = scan.nextInt();
+//					switch (choice) {
+//					case 1:
+//						System.out.println("Que voulez vous ajouter ? ");
+//						break;
+//					case 2 :
+//						System.out.println("Que voulez vous supprimer ? ");
+//						break;
+//					case 3:
+//						System.out.println("Valider le panier");
+//					break;
+//					}
+//				}
+//			}
 
 		} 
 } 

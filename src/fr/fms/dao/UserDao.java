@@ -5,95 +5,101 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import fr.fms.entities.Article;
 import fr.fms.entities.User;
 
-public abstract class UserDao<T> implements Dao<T> {
-public static void create(ArrayList<User> list, Connection connection, String Login, String Password) {
+public  class UserDao<T> implements Dao<User> {
+public void create( String Login, String Password) {
 	String queryInsert = "INSERT INTO T_Users (Login, Password) VALUES('"+ Login +"', '"+ Password +");";
 	try(Statement statement = connection.createStatement()){
 		try(ResultSet resultSet = statement.executeQuery(queryInsert)){
-			while(resultSet.next()) {
-				int userId = resultSet.getInt(1);
-				String userLogin = resultSet.getString(2);
-				String userPassword = resultSet.getString(3);
-				list.add(new User(userId,userLogin,userPassword));
-			}
+			System.out.println("Creation done !");
 		}
 	}
 	catch(SQLException e){
 		e.printStackTrace();
 	}
 }
-public static void selectAll(ArrayList<User> list, Connection connection) {
+public ArrayList<User> readAll() {
+	ArrayList<User> listUser = new ArrayList<>();
 	 String querySql = "SELECT * FROM T_Users";
-		//String queryUpdateSql = "UPDATE T_Articles SET UnitaryPrice = 100 WHERE IdArticle = 15 ";
+		
 		try(Statement statement = connection.createStatement()){
 			try(ResultSet resultSet = statement.executeQuery(querySql)){
 				while(resultSet.next()) {
 					int userId = resultSet.getInt(1);
 					String userLogin = resultSet.getString(2);
 					String userPassword = resultSet.getString(3);
-					list.add(new User(userId,userLogin,userPassword));
+					listUser.add(new User(userId,userLogin,userPassword));
 				}
 			}
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		return listUser;
 	 
 }
-public static  void update(ArrayList<User> list, Connection connection, double IdToUpdate) {
+public boolean update( double IdToUpdate, String login, String password) {
 	
-	String queryUpdateSql = "UPDATE T_User SET Password = 12345 WHERE IdUser =" + IdToUpdate;
+	String queryUpdateSql = "UPDATE `t_users` SET `Login`='"+login+"', `Password`='"+password+"' WHERE  `IdUser`=" + IdToUpdate;
 	try(Statement statement = connection.createStatement()){
 		try(ResultSet resultSet = statement.executeQuery(queryUpdateSql)){
-			while(resultSet.next()) {
-				int userId = resultSet.getInt(1);
-				String userLogin = resultSet.getString(2);
-				String userPassword = resultSet.getString(3);
-				list.add(new User(userId,userLogin,userPassword));
-			}
+			System.out.println("Update User done !");
 		}
 	}
 	catch(SQLException e){
 		e.printStackTrace();
 	}
- 
+ return true;
 }
-public static void delete(ArrayList<User> list, Connection connection, int Id) {
+public boolean delete( int Id) {
 	
 	String queryDelete = "DELETE FROM T_User WHERE IdUser ="+ Id;
 	try(Statement statement = connection.createStatement()){
 		try(ResultSet resultSet = statement.executeQuery(queryDelete)){
-			while(resultSet.next()) {
-				int userId = resultSet.getInt(1);
-				String userLogin = resultSet.getString(2);
-				String userPassword = resultSet.getString(3);
-				list.add(new User(userId,userLogin,userPassword));
-			}
+			System.out.println("User deleted !");
 		}
 	}
 	catch(SQLException e){
 		e.printStackTrace();
 	}
- 
+ return true;
 }
-public static void selectById(ArrayList<User> list, Connection connection, int Id) {
+public User selectById( int Id) {
 
-	
+	User userSelected = new User(Id, null, null);
 	String querySelectById = "SELECT * FROM T_Users WHERE IdUser ="+ Id;
 	try(Statement statement = connection.createStatement()){
 		try(ResultSet resultSet = statement.executeQuery(querySelectById)){
 			while(resultSet.next()) {
-				int userId = resultSet.getInt(1);
-				String userLogin = resultSet.getString(2);
-				String userPassword = resultSet.getString(3);
-				list.add(new User(userId,userLogin,userPassword));
+				userSelected.setUserId(resultSet.getInt(1));
+				userSelected.setUserLogin(resultSet.getString(2));
+				userSelected.setUserPassword(querySelectById);
 			}
 		}
 	}
 	catch(SQLException e){
 		e.printStackTrace();
 	}
+	return userSelected;
 }
+@Override
+public void create(User obj) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public boolean update(User obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+@Override
+public boolean delete(User obj) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
 }
