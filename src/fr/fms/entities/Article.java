@@ -8,8 +8,9 @@ public class Article {
 	private int IdCategory;
 	private String CatName;
 	
-	public Article(int articleId, String articleDescription, String articleBrand, double articlePrice, int IdCategory) {
-		this.articleId = articleId;
+
+	public Article( String articleDescription, String articleBrand, double articlePrice, int IdCategory) {
+		//this.articleId = articleId;
 		this.articleDescription = articleDescription;
 		this.articleBrand = articleBrand;
 		this.articlePrice = articlePrice;
@@ -20,8 +21,17 @@ public class Article {
 		this.articleDescription = articleDescription;
 		this.articleBrand = articleBrand;
 		this.articlePrice = articlePrice;
-		this.CatName= CatName;
-		
+			
+	}
+	public Article(int articleId) {
+		this.articleId = articleId;
+	}
+	public Article(int articleId, String articleDescription, String articleBrand, double articlePrice, int IdCategory) {
+		this.articleId = articleId;
+		this.articleDescription = articleDescription;
+		this.articleBrand = articleBrand;
+		this.articlePrice = articlePrice;
+		this.IdCategory = IdCategory;
 	}
 	public int getArticleId() {
 		return articleId;
@@ -58,11 +68,17 @@ public class Article {
 		return IdCategory;
 	}
 	public void setIdCategory(int idCategory) {
-		IdCategory = idCategory;
+		this.IdCategory = idCategory;
+	}
+	public String getCatName() {
+		return CatName;
+	}
+	public void setCatName(String catName) {
+		this.CatName = catName;
 	}
 	@Override
 	public String toString() {
 		return "| articleId =  " + articleId + ", articleDescription = " + articleDescription + ", articleBrand ="
-				+ articleBrand + ", articlePrice = " + articlePrice + " categorie = " + CatName + "|\n\n";
+				+ articleBrand + ", articlePrice = " + articlePrice + " categorie = " + IdCategory  +" " + CatName + "|";
 	}
 }

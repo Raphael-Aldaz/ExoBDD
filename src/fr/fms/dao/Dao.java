@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import exBDD.BddConnection;
-import fr.fms.entities.Article;
+
 
 
 public interface Dao<T> {

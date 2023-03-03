@@ -1,12 +1,9 @@
 package fr.fms.dao;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import fr.fms.entities.Article;
 import fr.fms.entities.User;
 
 public  class UserDao<T> implements Dao<User> {

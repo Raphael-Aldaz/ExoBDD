@@ -59,6 +59,8 @@ CREATE TABLE T_Users (
 )ENGINE = InnoDB;
 
 
+
+
 INSERT INTO T_Category(CatName, CatDescription) VALUES ('Materiel info', 'Tout materiel info');
 INSERT INTO T_Category(CatName, CatDescription) VALUES ('PC', 'Ordinateur portable ou bureau');
 INSERT INTO T_Category(CatName, CatDescription) VALUES ('Peripherique', 'Ecran, son, clavier, souris');
@@ -69,6 +71,15 @@ ALTER TABLE T_Articles ADD FOREIGN KEY(IdCategory) REFERENCES T_Category(IdCateg
 
 SELECT * FROM T_Articles;
 SELECT * FROM T_Category;
+CREATE TABLE T_Basket (
+	idBasket int(4) PRIMARY KEY AUTO_INCREMENT, 
+	articleId int(4) NOT NULL, 
+	articleDescription varchar(20) NOT NULL, 
+	articleBrand varchar(20) NOT NULL, 
+	articlePrice int(4) NOT NULL, 
+	CatName varchar(20) NOT NULL, 
+	IdUser int(4),
+	FOREIGN KEY(IdUser) REFERENCES t_users(IdUser) )ENGINE = InnoDB;
 
 UPDATE T_Articles SET IdCategory= 3 WHERE IdArticle = 1;
 UPDATE T_Articles SET IdCategory= 3 WHERE IdArticle = 2;
