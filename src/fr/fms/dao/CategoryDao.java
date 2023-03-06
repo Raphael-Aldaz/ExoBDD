@@ -81,36 +81,27 @@ public class CategoryDao<T> implements Dao<Category> {
 
 	@Override
 	public ArrayList<Category> readAll() {
-		System.out.println("cul");
 		ArrayList<Category> list = new ArrayList<>();
 		 String querySql = "SELECT *  FROM  T_Category ";
 			try(Statement statement = connection.createStatement()){
 				PreparedStatement myQuery = connection.prepareStatement(querySql);
 				try(ResultSet resultSet = myQuery.executeQuery()){
-					System.out.println("a");
 				while(resultSet.next()) {
-					
 							int resultId = resultSet.getInt(1);
 							String resultName = resultSet.getString(2);
 							String resultDescription = resultSet.getString(3);
 							list.add(new Category(resultId,resultName,resultDescription));
 							System.out.println(resultId);
-							
 					}
 				list.stream()
-				.forEach(System.out::print);
-					
+				.forEach(System.out::print);	
 				}
-				
 			}
-			
 			catch(SQLException e){
 				e.printStackTrace();
 			}
 			return list;
 	}
-
-	
 	}
 
 

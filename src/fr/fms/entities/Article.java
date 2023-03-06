@@ -1,5 +1,7 @@
 package fr.fms.entities;
 
+import exBDD.Main;
+
 public class Article {
 	private int articleId;
 	private String articleDescription;
@@ -21,10 +23,7 @@ public class Article {
 		this.articleDescription = articleDescription;
 		this.articleBrand = articleBrand;
 		this.articlePrice = articlePrice;
-			
-	}
-	public Article(int articleId) {
-		this.articleId = articleId;
+		this.CatName = CatName;
 	}
 	public Article(int articleId, String articleDescription, String articleBrand, double articlePrice, int IdCategory) {
 		this.articleId = articleId;
@@ -32,6 +31,9 @@ public class Article {
 		this.articleBrand = articleBrand;
 		this.articlePrice = articlePrice;
 		this.IdCategory = IdCategory;
+	}
+	public Article(int articleId) {
+		this.articleId = articleId;
 	}
 	public int getArticleId() {
 		return articleId;
@@ -78,7 +80,11 @@ public class Article {
 	}
 	@Override
 	public String toString() {
-		return "| articleId =  " + articleId + ", articleDescription = " + articleDescription + ", articleBrand ="
-				+ articleBrand + ", articlePrice = " + articlePrice + " categorie = " + IdCategory  +" " + CatName + "|";
+		return Main.ANSI_GREEN + "| articleId =  " + Main.ANSI_RESET  + articleId +
+				Main.ANSI_GREEN+ ", articleDescription = " +Main.ANSI_RESET + articleDescription +
+				Main.ANSI_GREEN+ ", articleBrand = "+Main.ANSI_RESET + articleBrand +
+				Main.ANSI_GREEN+ ", articlePrice = " + Main.ANSI_RESET +articlePrice +
+				Main.ANSI_GREEN+ " categorie = " +Main.ANSI_RESET + IdCategory  +
+				Main.ANSI_GREEN+" " + Main.ANSI_RESET +CatName  + " |\n";
 	}
 }

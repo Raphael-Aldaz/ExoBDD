@@ -6,7 +6,6 @@ public class Category {
 	private String CatDescription;
 	
 	public Category(int idCategory, String catName, String catDescription) {
-		super();
 		IdCategory = idCategory;
 		CatName = catName;
 		CatDescription = catDescription;

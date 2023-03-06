@@ -191,7 +191,7 @@ public class ArticleDao<T> implements Dao<Article> {
 							list.add(new Article(resultId,resultDescription,resultBrand,resultPrice, resultCatName));
 					}
 					list.stream()
-					.forEach(System.out::print);
+					.forEach(System.out::println);
 					
 				}
 			}

@@ -11,6 +11,11 @@ public class User {
 		this.userPassword = userPassword;
 	}
 	
+	public User(String userLogin, String userPassword) {
+		this.userLogin=userLogin;
+		this.userPassword=userPassword;
+	}
+
 	public int getUserId() {
 		return userId;
 	}
@@ -28,6 +33,11 @@ public class User {
 	}
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
+	}
+	
+	@Override
+	public String toString() {
+		return "userId = " + userId + ", userLogin = " + userLogin + ", userPassword = " + userPassword ;
 	}
 	
 }
